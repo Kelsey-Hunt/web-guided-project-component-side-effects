@@ -8,9 +8,25 @@ export default function Details(props) {
 
   // 👉 TASK 4 - Create a side effect 🥇 that runs only after first render.
 
+  useEffect(() => {
+    console.log("Effect after the first DOM surgery")
+  },[])
+
   // 👉 TASK 5 - Create a side effect 👻 that runs only after first render
   // and puts a 'click' event handler on document.
   // See what happens if we don't clean up.
+
+  useEffect(() => {
+    const sillyClickListener = () => {
+      console.log("Here's a random number: " + Math.random())
+    }
+    document.addEventListener('click', sillyClickListener);
+
+    return () => {
+      console.log("Cleaning up the silly event listener!");
+      document.removeEventListener('click', sillyClickListener);
+    }
+  },[])
 
   // 👉 TASK 6 - Create a side effect 🥵 that runs after every render.
 
